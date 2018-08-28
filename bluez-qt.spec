@@ -6,7 +6,7 @@
 #
 Name     : bluez-qt
 Version  : 5.49.0
-Release  : 2
+Release  : 3
 URL      : https://download.kde.org/stable/frameworks/5.49/bluez-qt-5.49.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.49/bluez-qt-5.49.0.tar.xz
 Source99 : https://download.kde.org/stable/frameworks/5.49/bluez-qt-5.49.0.tar.xz.sig
@@ -15,6 +15,7 @@ Group    : Development/Tools
 License  : LGPL-2.1
 Requires: bluez-qt-lib
 Requires: bluez-qt-license
+Requires: bluez-qt-data
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-kde
 BuildRequires : qtbase-dev qtbase-extras mesa-dev
@@ -25,10 +26,19 @@ Qt wrapper for BlueZ 5 DBus API
 ## Introduction
 BluezQt is a library for communication with BlueZ system and session daemons.
 
+%package data
+Summary: data components for the bluez-qt package.
+Group: Data
+
+%description data
+data components for the bluez-qt package.
+
+
 %package dev
 Summary: dev components for the bluez-qt package.
 Group: Development
 Requires: bluez-qt-lib
+Requires: bluez-qt-data
 Provides: bluez-qt-devel
 
 %description dev
@@ -38,6 +48,7 @@ dev components for the bluez-qt package.
 %package lib
 Summary: lib components for the bluez-qt package.
 Group: Libraries
+Requires: bluez-qt-data
 Requires: bluez-qt-license
 
 %description lib
@@ -60,7 +71,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1535144316
+export SOURCE_DATE_EPOCH=1535424982
 mkdir clr-build
 pushd clr-build
 %cmake ..
@@ -68,7 +79,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1535144316
+export SOURCE_DATE_EPOCH=1535424982
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/doc/bluez-qt
 cp COPYING.LIB %{buildroot}/usr/share/doc/bluez-qt/COPYING.LIB
@@ -79,6 +90,10 @@ popd
 %files
 %defattr(-,root,root,-)
 /lib/udev/rules.d/61-kde-bluetooth-rfkill.rules
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/xdg/bluez.categories
 
 %files dev
 %defattr(-,root,root,-)

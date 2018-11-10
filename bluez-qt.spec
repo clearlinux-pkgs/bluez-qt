@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : bluez-qt
-Version  : 5.51.0
-Release  : 7
-URL      : https://download.kde.org/stable/frameworks/5.51/bluez-qt-5.51.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.51/bluez-qt-5.51.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.51/bluez-qt-5.51.0.tar.xz.sig
+Version  : 5.52.0
+Release  : 8
+URL      : https://download.kde.org/stable/frameworks/5.52/bluez-qt-5.52.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.52/bluez-qt-5.52.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.52/bluez-qt-5.52.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -25,6 +25,14 @@ BuildRequires : qtbase-dev mesa-dev
 Qt wrapper for BlueZ 5 DBus API
 ## Introduction
 BluezQt is a library for communication with BlueZ system and session daemons.
+
+%package abi
+Summary: abi components for the bluez-qt package.
+Group: Default
+
+%description abi
+abi components for the bluez-qt package.
+
 
 %package data
 Summary: data components for the bluez-qt package.
@@ -64,14 +72,14 @@ license components for the bluez-qt package.
 
 
 %prep
-%setup -q -n bluez-qt-5.51.0
+%setup -q -n bluez-qt-5.52.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1539633389
+export SOURCE_DATE_EPOCH=1541865418
 mkdir -p clr-build
 pushd clr-build
 %cmake ..
@@ -79,7 +87,7 @@ make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1539633389
+export SOURCE_DATE_EPOCH=1541865418
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluez-qt
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/bluez-qt/COPYING.LIB
@@ -90,6 +98,10 @@ popd
 %files
 %defattr(-,root,root,-)
 /lib/udev/rules.d/61-kde-bluetooth-rfkill.rules
+
+%files abi
+%defattr(-,root,root,-)
+/usr/share/abi/libKF5BluezQt.so.5.52.0.abi
 
 %files data
 %defattr(-,root,root,-)
@@ -106,6 +118,8 @@ popd
 /usr/include/KF5/BluezQt/BluezQt/Input
 /usr/include/KF5/BluezQt/BluezQt/Job
 /usr/include/KF5/BluezQt/BluezQt/Manager
+/usr/include/KF5/BluezQt/BluezQt/Media
+/usr/include/KF5/BluezQt/BluezQt/MediaEndpoint
 /usr/include/KF5/BluezQt/BluezQt/MediaPlayer
 /usr/include/KF5/BluezQt/BluezQt/MediaPlayerTrack
 /usr/include/KF5/BluezQt/BluezQt/ObexAgent
@@ -130,6 +144,8 @@ popd
 /usr/include/KF5/BluezQt/bluezqt/input.h
 /usr/include/KF5/BluezQt/bluezqt/job.h
 /usr/include/KF5/BluezQt/bluezqt/manager.h
+/usr/include/KF5/BluezQt/bluezqt/media.h
+/usr/include/KF5/BluezQt/bluezqt/mediaendpoint.h
 /usr/include/KF5/BluezQt/bluezqt/mediaplayer.h
 /usr/include/KF5/BluezQt/bluezqt/mediaplayertrack.h
 /usr/include/KF5/BluezQt/bluezqt/obexagent.h
@@ -154,7 +170,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libKF5BluezQt.so.5.51.0
+/usr/lib64/libKF5BluezQt.so.5.52.0
 /usr/lib64/libKF5BluezQt.so.6
 /usr/lib64/qt5/qml/org/kde/bluezqt/DevicesModel.qml
 /usr/lib64/qt5/qml/org/kde/bluezqt/libbluezqtextensionplugin.so

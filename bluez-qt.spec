@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : bluez-qt
-Version  : 5.59.0
-Release  : 18
-URL      : https://download.kde.org/stable/frameworks/5.59/bluez-qt-5.59.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.59/bluez-qt-5.59.0.tar.xz
-Source99 : https://download.kde.org/stable/frameworks/5.59/bluez-qt-5.59.0.tar.xz.sig
+Version  : 5.60.0
+Release  : 19
+URL      : https://download.kde.org/stable/frameworks/5.60/bluez-qt-5.60.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.60/bluez-qt-5.60.0.tar.xz
+Source99 : https://download.kde.org/stable/frameworks/5.60/bluez-qt-5.60.0.tar.xz.sig
 Summary  : Qt wrapper for Bluez 5 DBus API
 Group    : Development/Tools
 License  : LGPL-2.1
@@ -66,16 +66,17 @@ license components for the bluez-qt package.
 
 
 %prep
-%setup -q -n bluez-qt-5.59.0
+%setup -q -n bluez-qt-5.60.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560012051
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1563033821
 mkdir -p clr-build
 pushd clr-build
+export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
@@ -84,11 +85,11 @@ export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
 %cmake ..
-make  %{?_smp_mflags}
+make  %{?_smp_mflags} VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1560012051
+export SOURCE_DATE_EPOCH=1563033821
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluez-qt
 cp COPYING.LIB %{buildroot}/usr/share/package-licenses/bluez-qt/COPYING.LIB
@@ -102,7 +103,7 @@ popd
 
 %files data
 %defattr(-,root,root,-)
-/usr/share/xdg/bluez.categories
+/usr/share/qlogging-categories5/bluez.categories
 
 %files dev
 %defattr(-,root,root,-)
@@ -110,10 +111,16 @@ popd
 /usr/include/KF5/BluezQt/BluezQt/Agent
 /usr/include/KF5/BluezQt/BluezQt/Device
 /usr/include/KF5/BluezQt/BluezQt/DevicesModel
+/usr/include/KF5/BluezQt/BluezQt/GattApplication
+/usr/include/KF5/BluezQt/BluezQt/GattCharacteristic
+/usr/include/KF5/BluezQt/BluezQt/GattManager
+/usr/include/KF5/BluezQt/BluezQt/GattService
 /usr/include/KF5/BluezQt/BluezQt/InitManagerJob
 /usr/include/KF5/BluezQt/BluezQt/InitObexManagerJob
 /usr/include/KF5/BluezQt/BluezQt/Input
 /usr/include/KF5/BluezQt/BluezQt/Job
+/usr/include/KF5/BluezQt/BluezQt/LEAdvertisement
+/usr/include/KF5/BluezQt/BluezQt/LEAdvertisingManager
 /usr/include/KF5/BluezQt/BluezQt/Manager
 /usr/include/KF5/BluezQt/BluezQt/Media
 /usr/include/KF5/BluezQt/BluezQt/MediaEndpoint
@@ -136,10 +143,16 @@ popd
 /usr/include/KF5/BluezQt/bluezqt/bluezqt_export.h
 /usr/include/KF5/BluezQt/bluezqt/device.h
 /usr/include/KF5/BluezQt/bluezqt/devicesmodel.h
+/usr/include/KF5/BluezQt/bluezqt/gattapplication.h
+/usr/include/KF5/BluezQt/bluezqt/gattcharacteristic.h
+/usr/include/KF5/BluezQt/bluezqt/gattmanager.h
+/usr/include/KF5/BluezQt/bluezqt/gattservice.h
 /usr/include/KF5/BluezQt/bluezqt/initmanagerjob.h
 /usr/include/KF5/BluezQt/bluezqt/initobexmanagerjob.h
 /usr/include/KF5/BluezQt/bluezqt/input.h
 /usr/include/KF5/BluezQt/bluezqt/job.h
+/usr/include/KF5/BluezQt/bluezqt/leadvertisement.h
+/usr/include/KF5/BluezQt/bluezqt/leadvertisingmanager.h
 /usr/include/KF5/BluezQt/bluezqt/manager.h
 /usr/include/KF5/BluezQt/bluezqt/media.h
 /usr/include/KF5/BluezQt/bluezqt/mediaendpoint.h
@@ -167,7 +180,7 @@ popd
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libKF5BluezQt.so.5.59.0
+/usr/lib64/libKF5BluezQt.so.5.60.0
 /usr/lib64/libKF5BluezQt.so.6
 /usr/lib64/qt5/qml/org/kde/bluezqt/DevicesModel.qml
 /usr/lib64/qt5/qml/org/kde/bluezqt/libbluezqtextensionplugin.so

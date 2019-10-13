@@ -1,5 +1,5 @@
 PKG_NAME := bluez-qt
-URL = https://download.kde.org/stable/frameworks/5.62/bluez-qt-5.62.0.tar.xz
+URL = https://download.kde.org/stable/frameworks/5.63/bluez-qt-5.63.0.tar.xz
 ARCHIVES = 
 
 include ../common/Makefile.common

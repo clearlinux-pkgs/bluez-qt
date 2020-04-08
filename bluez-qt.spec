@@ -6,13 +6,14 @@
 #
 Name     : bluez-qt
 Version  : 5.68.0
-Release  : 27
+Release  : 28
 URL      : https://download.kde.org/stable/frameworks/5.68/bluez-qt-5.68.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.68/bluez-qt-5.68.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.68/bluez-qt-5.68.0.tar.xz.sig
-Summary  : Qt wrapper for Bluez 5 DBus API
+Summary  : No detailed summary available
 Group    : Development/Tools
-License  : LGPL-2.1
+License  : LGPL-2.1 LGPL-3.0
+Requires: bluez-qt-config = %{version}-%{release}
 Requires: bluez-qt-data = %{version}-%{release}
 Requires: bluez-qt-lib = %{version}-%{release}
 Requires: bluez-qt-license = %{version}-%{release}
@@ -25,6 +26,14 @@ BuildRequires : qtbase-dev mesa-dev
 Qt wrapper for BlueZ 5 DBus API
 ## Introduction
 BluezQt is a library for communication with BlueZ system and session daemons.
+
+%package config
+Summary: config components for the bluez-qt package.
+Group: Default
+
+%description config
+config components for the bluez-qt package.
+
 
 %package data
 Summary: data components for the bluez-qt package.
@@ -40,7 +49,6 @@ Group: Development
 Requires: bluez-qt-lib = %{version}-%{release}
 Requires: bluez-qt-data = %{version}-%{release}
 Provides: bluez-qt-devel = %{version}-%{release}
-Requires: bluez-qt = %{version}-%{release}
 Requires: bluez-qt = %{version}-%{release}
 
 %description dev
@@ -74,34 +82,37 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1584293881
+export SOURCE_DATE_EPOCH=1586385493
 mkdir -p clr-build
 pushd clr-build
-# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
 export CFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FCFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
-export FFLAGS="$CFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FCFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
+export FFLAGS="$FFLAGS -O3 -ffat-lto-objects -flto=4 "
 export CXXFLAGS="$CXXFLAGS -O3 -ffat-lto-objects -flto=4 "
-%cmake ..
+%cmake .. -DUDEV_RULES_INSTALL_DIR=/usr/lib/udev/rules.d
 make  %{?_smp_mflags}  VERBOSE=1
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1584293881
+export SOURCE_DATE_EPOCH=1586385493
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluez-qt
 cp %{_builddir}/bluez-qt-5.68.0/COPYING.LIB %{buildroot}/usr/share/package-licenses/bluez-qt/01a6b4bf79aca9b556822601186afab86e8c4fbf
+cp %{_builddir}/bluez-qt-5.68.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
 
 %files
 %defattr(-,root,root,-)
-/lib/udev/rules.d/61-kde-bluetooth-rfkill.rules
+
+%files config
+%defattr(-,root,root,-)
+/usr/lib/udev/rules.d/61-kde-bluetooth-rfkill.rules
 
 %files data
 %defattr(-,root,root,-)
@@ -191,3 +202,4 @@ popd
 %files license
 %defattr(0644,root,root,0755)
 /usr/share/package-licenses/bluez-qt/01a6b4bf79aca9b556822601186afab86e8c4fbf
+/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32

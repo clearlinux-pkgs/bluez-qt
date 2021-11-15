@@ -5,11 +5,11 @@
 # Source0 file verified with key 0x58D0EE648A48B3BB (faure@kde.org)
 #
 Name     : bluez-qt
-Version  : 5.87.0
-Release  : 44
-URL      : https://download.kde.org/stable/frameworks/5.87/bluez-qt-5.87.0.tar.xz
-Source0  : https://download.kde.org/stable/frameworks/5.87/bluez-qt-5.87.0.tar.xz
-Source1  : https://download.kde.org/stable/frameworks/5.87/bluez-qt-5.87.0.tar.xz.sig
+Version  : 5.88.0
+Release  : 45
+URL      : https://download.kde.org/stable/frameworks/5.88/bluez-qt-5.88.0.tar.xz
+Source0  : https://download.kde.org/stable/frameworks/5.88/bluez-qt-5.88.0.tar.xz
+Source1  : https://download.kde.org/stable/frameworks/5.88/bluez-qt-5.88.0.tar.xz.sig
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : LGPL-2.1 LGPL-3.0
@@ -77,15 +77,15 @@ license components for the bluez-qt package.
 
 
 %prep
-%setup -q -n bluez-qt-5.87.0
-cd %{_builddir}/bluez-qt-5.87.0
+%setup -q -n bluez-qt-5.88.0
+cd %{_builddir}/bluez-qt-5.88.0
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1634393758
+export SOURCE_DATE_EPOCH=1636999916
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -101,14 +101,14 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1634393758
+export SOURCE_DATE_EPOCH=1636999916
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluez-qt
-cp %{_builddir}/bluez-qt-5.87.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/bluez-qt/3c3d7573e137d48253731c975ecf90d74cfa9efe
-cp %{_builddir}/bluez-qt-5.87.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/bluez-qt/6f1f675aa5f6a2bbaa573b8343044b166be28399
-cp %{_builddir}/bluez-qt-5.87.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluez-qt/757b86330df80f81143d5916b3e92b4bcb1b1890
-cp %{_builddir}/bluez-qt-5.87.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32
-cp %{_builddir}/bluez-qt-5.87.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/bluez-qt-5.88.0/LICENSES/LGPL-2.1-only.txt %{buildroot}/usr/share/package-licenses/bluez-qt/3c3d7573e137d48253731c975ecf90d74cfa9efe
+cp %{_builddir}/bluez-qt-5.88.0/LICENSES/LGPL-2.1-or-later.txt %{buildroot}/usr/share/package-licenses/bluez-qt/6f1f675aa5f6a2bbaa573b8343044b166be28399
+cp %{_builddir}/bluez-qt-5.88.0/LICENSES/LGPL-3.0-only.txt %{buildroot}/usr/share/package-licenses/bluez-qt/757b86330df80f81143d5916b3e92b4bcb1b1890
+cp %{_builddir}/bluez-qt-5.88.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32
+cp %{_builddir}/bluez-qt-5.88.0/LICENSES/LicenseRef-KDE-Accepted-LGPL.txt %{buildroot}/usr/share/package-licenses/bluez-qt/e458941548e0864907e654fa2e192844ae90fc32
 pushd clr-build
 %make_install
 popd
@@ -133,8 +133,11 @@ popd
 /usr/include/KF5/BluezQt/BluezQt/DevicesModel
 /usr/include/KF5/BluezQt/BluezQt/GattApplication
 /usr/include/KF5/BluezQt/BluezQt/GattCharacteristic
+/usr/include/KF5/BluezQt/BluezQt/GattCharacteristicRemote
+/usr/include/KF5/BluezQt/BluezQt/GattDescriptorRemote
 /usr/include/KF5/BluezQt/BluezQt/GattManager
 /usr/include/KF5/BluezQt/BluezQt/GattService
+/usr/include/KF5/BluezQt/BluezQt/GattServiceRemote
 /usr/include/KF5/BluezQt/BluezQt/InitManagerJob
 /usr/include/KF5/BluezQt/BluezQt/InitObexManagerJob
 /usr/include/KF5/BluezQt/BluezQt/Input
@@ -169,8 +172,11 @@ popd
 /usr/include/KF5/BluezQt/bluezqt/devicesmodel.h
 /usr/include/KF5/BluezQt/bluezqt/gattapplication.h
 /usr/include/KF5/BluezQt/bluezqt/gattcharacteristic.h
+/usr/include/KF5/BluezQt/bluezqt/gattcharacteristicremote.h
+/usr/include/KF5/BluezQt/bluezqt/gattdescriptorremote.h
 /usr/include/KF5/BluezQt/bluezqt/gattmanager.h
 /usr/include/KF5/BluezQt/bluezqt/gattservice.h
+/usr/include/KF5/BluezQt/bluezqt/gattserviceremote.h
 /usr/include/KF5/BluezQt/bluezqt/initmanagerjob.h
 /usr/include/KF5/BluezQt/bluezqt/initobexmanagerjob.h
 /usr/include/KF5/BluezQt/bluezqt/input.h
@@ -204,11 +210,12 @@ popd
 /usr/lib64/cmake/KF5BluezQt/KF5BluezQtTargets-relwithdebinfo.cmake
 /usr/lib64/cmake/KF5BluezQt/KF5BluezQtTargets.cmake
 /usr/lib64/libKF5BluezQt.so
+/usr/lib64/pkgconfig/KF5BluezQt.pc
 /usr/lib64/qt5/mkspecs/modules/qt_BluezQt.pri
 
 %files lib
 %defattr(-,root,root,-)
-/usr/lib64/libKF5BluezQt.so.5.87.0
+/usr/lib64/libKF5BluezQt.so.5.88.0
 /usr/lib64/libKF5BluezQt.so.6
 /usr/lib64/qt5/qml/org/kde/bluezqt/DevicesModel.qml
 /usr/lib64/qt5/qml/org/kde/bluezqt/libbluezqtextensionplugin.so

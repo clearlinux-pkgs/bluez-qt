@@ -7,7 +7,7 @@
 #
 Name     : bluez-qt
 Version  : 5.106.0
-Release  : 64
+Release  : 65
 URL      : https://download.kde.org/stable/frameworks/5.106/bluez-qt-5.106.0.tar.xz
 Source0  : https://download.kde.org/stable/frameworks/5.106/bluez-qt-5.106.0.tar.xz
 Source1  : https://download.kde.org/stable/frameworks/5.106/bluez-qt-5.106.0.tar.xz.sig
@@ -86,7 +86,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1684805164
+export SOURCE_DATE_EPOCH=1685485149
 mkdir -p clr-build
 pushd clr-build
 export GCC_IGNORE_WERROR=1
@@ -119,7 +119,7 @@ make  %{?_smp_mflags}
 popd
 
 %install
-export SOURCE_DATE_EPOCH=1684805164
+export SOURCE_DATE_EPOCH=1685485149
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bluez-qt
 cp %{_builddir}/bluez-qt-%{version}/LICENSES/CC0-1.0.txt %{buildroot}/usr/share/package-licenses/bluez-qt/82da472f6d00dc5f0a651f33ebb320aa9c7b08d0 || :
@@ -150,7 +150,6 @@ popd
 
 %files dev
 %defattr(-,root,root,-)
-/V3/usr/lib64/libKF5BluezQt.so
 /usr/include/KF5/BluezQt/BluezQt/Adapter
 /usr/include/KF5/BluezQt/BluezQt/Agent
 /usr/include/KF5/BluezQt/BluezQt/Device
@@ -240,7 +239,6 @@ popd
 %files lib
 %defattr(-,root,root,-)
 /V3/usr/lib64/libKF5BluezQt.so.5.106.0
-/V3/usr/lib64/libKF5BluezQt.so.6
 /V3/usr/lib64/qt5/qml/org/kde/bluezqt/libbluezqtextensionplugin.so
 /usr/lib64/libKF5BluezQt.so.5.106.0
 /usr/lib64/libKF5BluezQt.so.6
